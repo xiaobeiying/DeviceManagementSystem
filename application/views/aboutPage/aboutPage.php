@@ -6,7 +6,6 @@ require dirname(__FILE__)."/../../libraries/CI_Log.php";
 $host = $_SERVER['HTTP_HOST'];
 
 $theTime = date('y-m-d h:i:s',time());
-//$who = "李明";
 $who = getMemberFromIP();
 $where = "从".$_SERVER["REMOTE_ADDR"];
 $doThings = "访问了关于系统页面";
@@ -22,20 +21,19 @@ writeToLog($theTime,$who,$where,$doThings);
 <div style="width: 100%;height:100%;background-color:#EEEEFF">
 
 <div style="width: 100%;height:200px;background-color:#EEEEFF">
+</div>
 
-</div>
 <div style="width: 100%;height:200px;background-color:#EEEEFF;text-align:center;">
-<h3 style="margin-top:0px;margin-bottom:20px;color:">亲，喜欢就点个赞吧~</h3>
-<img id="like-btn" style="width:150px;height:150px;"src="<?php echo "http://".$host."/imgs/click_on.png";?>"></img>
-<img style="width:1px;height:1px;"src="<?php echo "http://".$host."/imgs/click_down.png";?>"></img>
+<h2 style="margin-top:0px;margin-bottom:20px;color:">请大家爱护我们的测试机</h2>
+<img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/click_on.png";?>"></img>
+<img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/click_on.png";?>"></img>
+<img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/click_on.png";?>"></img>
+<h4 id="like-btn" style="margin-top:20px;margin-bottom:0px;color:">使用过程中如遇问题，请随时联系管理员</h4>
 </div>
-<div>
-<h4 id="like" style="text-align:center;margin-top:30px;" hidden>O(∩_∩)O   Thanks you ~</h4>
-<div style="text-align:center;padding-top:20px;" target="_blank">
-<label>欢迎查看源码：<a href="https://github.com/liyuanhong/CIApplication">https://github.com/liyuanhong/CIApplication</a>
-</label>
-</div>
-<div style="text-align:center;padding-top:20px;"><label style="margin-top:0px;margin-bottom:20px;color:">设备管理系统--Version2.0~</label></div>
+
+<div style="text-align:center;padding-top:20px;">
+<h4 id="like" style="text-align:center;margin-top:20px;color:0000FF" hidden>QQ:2969***997 电话:182******88</h4>
+<label style="margin-top:50px;margin-bottom:20px;color:">小影设备管理系统--DMS V1.0 </label></div>
 </div>
 </div>
 
@@ -56,6 +54,5 @@ $('#like-btn').mousedown(function(){
 });
 
 $('#like-btn').mouseup(function(){
-	//$("#like-btn").attr("src",'<?php echo "http://".$host."/imgs/click_on.png"; ?>');
 });
 </script>
