@@ -11,7 +11,6 @@ $arr = explode("/",$url);
 
 $isLogin = $this->ManUserMod->isLogin($session);
 
-
 // print_r($arr[3]);
 // exit();
 
@@ -30,8 +29,9 @@ $isLogin = $this->ManUserMod->isLogin($session);
 		<label style="color:white;font-size:20px;margin-left:45px;margin-top:8px;">小影设备管理系统</label>
 		<div>
 			<?php if($isLogin == 1){
+				$curUserName = $this->ManUserMod->getUserNameFromSession($session);
 				echo '<label id="logout_lagel" class="login_label" onclick="logout()">退出</label>';
-				echo '<label style="font-size: 14px;padding-top: 10px;color: #31B0F4;margin-left: 0px;height: 100%;width: 110px;background-color: #1A4FA3;text-align: center;" >welcome~</label>';
+				echo '<label style="font-size: 14px;padding-top: 10px;color: #31B0F4;margin-left: 0px;height: 100%;width: 110px;background-color: #1A4FA3;text-align: center;" >',$curUserName,'</label>';
 			}else{
 				echo '<label id="login_lagel" class="login_label" onclick="jumpToLoginPage()">登录</label>';
 				echo '<label id="register_label" class="login_label" onclick="jumpToRegisterPage()">注册</label>';

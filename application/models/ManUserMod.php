@@ -143,11 +143,12 @@ class ManUserMod extends CI_Model {
 	}
 	
 	//0522新增
-	//根据session获取用户名称
+	//根据session获取当前登录用户名称
 	function getUserNameFromSession($session){
-		$currentUser = 'select user_name from users where session="'.$session.'"';
-		//$query = $this->db->query($queryString);
-		//$arr = $query->result();
+		$queryString = 'select user_name from users where session="'.$session.'"';
+		$query = $this->db->query($queryString);
+		$arr = array($query->result());
+		$currentUser = current($arr[0])->user_name;
 		return $currentUser;
 	}
 	
