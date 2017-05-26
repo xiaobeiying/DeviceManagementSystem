@@ -18,7 +18,7 @@ function getMemberFromIP() {
 			
 			//引用ManUserMod.php中的getUserInfoFromSession()方法
 			$loginUserInfo = new ManUserMod();
-			if(count($loginUserInfo->getUserInfoFromSession($session)) == "1");{
+			if(count($loginUserInfo->getUserInfoFromSession($session)) == "1"){
 				$ar = array($loginUserInfo->getUserInfoFromSession($session));   //或者先声明$ar = array();再赋值$ar[] = array();
 				//print_r(current($ar[0]));
 				$currentUser = current($ar[0])->login_name;
