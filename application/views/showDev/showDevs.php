@@ -10,6 +10,11 @@ if($ses != ""){
 
 $isLogin = $this->ManUserMod->isLogin($session);
 
+$userInfo = $this->ManUserMod->getUserInfoFromSession($session);
+if(count($userInfo) != 0){
+	$curLoginName = $userInfo[0]->login_name;
+}
+
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 //主机地址
 $host = $_SERVER['HTTP_HOST'];
@@ -154,7 +159,11 @@ writeToLog($theTime,$who,$where,$doThings);
 							echo '<td><button class="btn btn-sm btn-success" onclick="applyFor()" id="'.$row->id.'">申 请</button></td>';
 						}else if($row->status == 1){
 							echo '<td>'.$row->borrower.'</td>';
-							echo '<td><button class="btn btn-sm btn-danger" onclick="cancleApplyFor()" id="'.$row->id.'">取 消</button></td>';
+							if($row->borrower == $curLoginName){
+								echo '<td><button class="btn btn-sm btn-danger" onclick="cancleApplyFor()" id="'.$row->id.'">取 消</button></td>';
+							}else{
+								echo '<td></td>';
+							}
 						}else if($row->status == 2){
 							echo '<td>'.$row->borrower.'</td>';
 							echo '<td></td>';
