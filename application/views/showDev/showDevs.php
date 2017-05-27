@@ -1,6 +1,15 @@
 <?php
 require dirname(__FILE__)."/../../libraries/CI_Util.php";
 require dirname(__FILE__)."/../../libraries/CI_Log.php";
+
+$ses = isset($_POST['session'])?$_POST['session']:'';
+$session = "";
+if($ses != ""){
+	$session = $_POST['session'];
+}
+
+$isLogin = $this->ManUserMod->isLogin($session);
+
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 //主机地址
 $host = $_SERVER['HTTP_HOST'];
@@ -27,12 +36,9 @@ if($requestMethod == "POST"){
 	$old_dev = "all";
 }
 
-
 $datas = $this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev);
-//echo json_encode($datas);
-	
+
 $theTime = date('y-m-d h:i:s',time());
-//$who = "李明";
 $who = getMemberFromIP();
 $where = "从".$_SERVER["REMOTE_ADDR"];
 $doThings = "访问了设备查询页面";
@@ -139,25 +145,38 @@ writeToLog($theTime,$who,$where,$doThings);
 			<tbody>
 			<?php 
 				$i = 1;
-				foreach ($datas as $row){
-					echo '<tr><td>'.$i.'</td><td><img onclick="showDevInfo()" class="dev_icon" id="icon_'.$row->id.'"src="http://'.$host.'/files/thumbnail/'.trim($row->path[0]).'"></img>';
-					echo '</td><td id="label_'.$row->id.'">'.$row->device_name.'</td><td>'.$row->model.'</td><td>'.$row->theNum.'</td>';
-					if($row->status == 0){
-						echo '<td><input type="text" class="form-control" style="width:80px;" id="input_'.$row->id.'"></td>';
-						echo '<td><button class="btn btn-sm btn-success" onclick="applyFor()" id="'.$row->id.'">申 请</button></td>';
-					}else if($row->status == 1){
-						echo '<td>'.$row->borrower.'</td>';
-						echo '<td><button class="btn btn-sm btn-danger" onclick="cancleApplyFor()" id="'.$row->id.'">取 消</button></td>';
-					}else if($row->status == 2){
-						echo '<td>'.$row->borrower.'</td>';
-						echo '<td></td>';
-						
+				if($isLogin == 1){
+					foreach ($datas as $row){
+						echo '<tr><td>'.$i.'</td><td><img onclick="showDevInfo()" class="dev_icon" id="icon_'.$row->id.'"src="http://'.$host.'/files/thumbnail/'.trim($row->path[0]).'"></img>';
+						echo '</td><td id="label_'.$row->id.'">'.$row->device_name.'</td><td>'.$row->model.'</td><td>'.$row->theNum.'</td>';
+						if($row->status == 0){
+							echo '<td><input type="text" class="form-control" style="width:80px;" id="input_'.$row->id.'"></td>';
+							echo '<td><button class="btn btn-sm btn-success" onclick="applyFor()" id="'.$row->id.'">申 请</button></td>';
+						}else if($row->status == 1){
+							echo '<td>'.$row->borrower.'</td>';
+							echo '<td><button class="btn btn-sm btn-danger" onclick="cancleApplyFor()" id="'.$row->id.'">取 消</button></td>';
+						}else if($row->status == 2){
+							echo '<td>'.$row->borrower.'</td>';
+							echo '<td></td>';
+						}
+						echo '<td style="color:red;">'.$row->owner.'</td>
+						<td>'.$row->borrow_time.'</td>
+						</tr>';
+						$i = $i + 1;
+						}
+				}else if($isLogin == 0){
+					foreach ($datas as $row){
+						echo '<tr><td>'.$i.'</td><td><img onclick="showDevInfo()" class="dev_icon" id="icon_'.$row->id.'"src="http://'.$host.'/files/thumbnail/'.trim($row->path[0]).'"></img>';
+						echo '</td><td id="label_'.$row->id.'">'.$row->device_name.'</td><td>'.$row->model.'</td><td>'.$row->theNum.'</td>';
+						if($row->status != ""){
+							echo '<td>'.$row->borrower.'</td>';
+							echo '<td></td>';
+						}
+						echo '<td style="color:red;">'.$row->owner.'</td>
+						<td>'.$row->borrow_time.'</td>
+						</tr>';
+						$i = $i + 1;
 					}
-					
-					echo '<td style="color:red;">'.$row->owner.'</td>
-					<td>'.$row->borrow_time.'</td>
-					</tr>';
-					$i = $i + 1;
 				}
 			?>
 				
