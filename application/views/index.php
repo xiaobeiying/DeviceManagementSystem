@@ -11,18 +11,21 @@ $arr = explode("/",$url);
 
 $isLogin = $this->ManUserMod->isLogin($session);
 
-// print_r($arr[3]);
-// exit();
+//获取当前登录用户的等级
+$userInfo = $this->ManUserMod->getUserInfoFromSession($session);
+if(count($userInfo) != 0){
+	$curLoginRole = $userInfo[0]->role;
+}else{
+	$curLoginRole = 2;
+}
 
 ?>
-
 
 <script src="<?php echo base_url();?>static/devMS/js/jquery-3.1.1.min.js"></script>
 <script src="<?php echo base_url();?>static/devMS/js/jquery.cookie.js"></script>
 <link href="<?php echo base_url();?>static/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo base_url();?>static/devMS/css/index.css" rel="stylesheet">
 <script src="<?php echo base_url();?>static/devMS/js/index.js"></script>
-
 
 <div id="main">
 	<div id="top_bar">
@@ -36,7 +39,6 @@ $isLogin = $this->ManUserMod->isLogin($session);
 				echo '<label id="login_lagel" class="login_label" onclick="jumpToLoginPage()">登录</label>';
 				echo '<label id="register_label" class="login_label" onclick="jumpToRegisterPage()">注册</label>';
 			}
-			
 			?>
 		</div>
 	</div>
@@ -46,26 +48,25 @@ $isLogin = $this->ManUserMod->isLogin($session);
 			<div class="setting_item">
 				<label id = "searchDevices" class="setting_label <?php if($arr[3]=='searchDevices'){echo 'menu_selected';} ?>" onclick="changeMenu(event)">设 备 查 询</label>
 			</div>
-			<?php if($isLogin == 1){
+			<?php if($isLogin == 1 && $curLoginRole != 3){
 				echo '<div class="setting_item">';
 				echo '<label id = "addDevices" class="setting_label';if($arr[3]=="addDevices"){echo ' menu_selected';} echo '" onclick="changeMenu(event)">添 加 设 备</label>';
 				echo '</div>';
 			}
 			?>
-			<?php if($isLogin == 1){
+			<?php if($isLogin == 1 && $curLoginRole != 3){
 				echo '<div class="setting_item">';
 				echo '<label id = "manDevices" class="setting_label';if($arr[3]=="manDevices"){echo ' menu_selected';}echo '" onclick="changeMenu(event)" >管 理 设 备</label>';
 				echo '</div>';
 			}
-			
 			?>
-			<?php if($isLogin == 1){
+			<?php if($isLogin == 1 && $curLoginRole != 3){
 				echo '<div class="setting_item">';
 				echo '<label id = "checkDevices" class="setting_label';if($arr[3]=="checkDevices"){echo " menu_selected";} echo '" onclick="changeMenu(event)">设 备 盘 点</label>';
 				echo '</div>';
 			}
 			?>
-			<?php if($isLogin == 1){
+			<?php if($isLogin == 1 && $curLoginRole != 3){
 				echo '<div class="setting_item">';
 				echo '<label id = "logMan"class="setting_label';if($arr[3]=='logMan'){echo ' menu_selected';}echo '" onclick="changeMenu(event)">日 志 管 理</label>';
 				echo '</div>';
@@ -86,7 +87,7 @@ $isLogin = $this->ManUserMod->isLogin($session);
 			<div class="setting_item">
 				<label id = "myPage" class="setting_label <?php if($arr[3]=='myPage'){echo ' menu_selected';} ?>" onclick="changeMenu(event)">我 的 页 面</label>
 			</div>
-			<?php if($isLogin == 1){
+			<?php if($isLogin == 1 && $curLoginRole != 3){
 				echo '<div class="setting_item">';
 				echo '<label id = "otherToolsPage" class="setting_label';if($arr[3]=='otherToolsPage'){echo ' menu_selected';} echo '" onclick="changeMenu(event)">附 加 功 能</label>';
 				echo '</div>';
@@ -134,7 +135,6 @@ $isLogin = $this->ManUserMod->isLogin($session);
 						$this->load->view('userMan/changeUserInfoPage');
 					}
 				}
-				
 				
 			}else if($arr[3]=='myPage'){
 				$this->load->view('myPage/myPage');
