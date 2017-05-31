@@ -6,7 +6,7 @@ function delAnUser(e){
 	butId = e.target.id;
 	id = butId.substring(4);
 	
-	con=confirm("确定删除该设备么?");
+	con=confirm("确定删除该用户么?");
 	if(con == true){
 		$.ajax({
 	        type: "post",
