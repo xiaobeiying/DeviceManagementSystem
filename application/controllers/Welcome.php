@@ -251,13 +251,12 @@ class Welcome extends CI_Controller {
 		require dirname(__FILE__)."/../libraries/CI_Log.php";
 		require dirname(__FILE__)."/../libraries/CI_Util.php";
 		//主机地址
-		$host = $_SERVER['HTTP_HOST'];
+		//$host = $_SERVER['HTTP_HOST'];
 		
 		$theTime = date('y-m-d h:i:s',time());
-		//$who = "李明";
 		$who = getMemberFromIP();
 		$where = "从".$_SERVER["REMOTE_ADDR"];
-		$doThings = "喜欢了^_^设备管理系统~~~~~~~~";
+		$doThings = "查看了^_^管理员联系方式~~~~~~~~";
 		writeToLog($theTime,$who,$where,$doThings);
 	}
 }

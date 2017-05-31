@@ -29,6 +29,11 @@ class ManUserMod extends CI_Model {
 			$query = $this->db->query($queryString);
 			$arr = $query->result();
 			return $arr;
+		}else if($role == 3){
+			$queryString = 'select id,user_name,login_name,password,role,icon from users where login_name="'.$login_name.'"';
+			$query = $this->db->query($queryString);
+			$arr = $query->result();
+			return $arr;
 		}else{
 			return array();
 		}
@@ -121,6 +126,17 @@ class ManUserMod extends CI_Model {
 				"login_time"=>$login_time,
 				"role"=>$role,
 				"session"=>$session
+		);
+		$this->db->update('users', $data);
+	}
+	
+	//非草鸡管理员用户修改用户的个人信息
+	function changeUserInfoPart($id,$user_name,$login_name,$password){
+		$this->db->where("id",$id);
+		$data = array(
+				"user_name" => $user_name,
+				"login_name"=>$login_name,
+				"password"=>$password,
 		);
 		$this->db->update('users', $data);
 	}

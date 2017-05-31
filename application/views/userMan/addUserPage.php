@@ -47,7 +47,8 @@ writeToLog($theTime,$who,$where,$doThings);
 				<label>角色：</label>
 				<select id="role"  class="input_style form-control" style="margin-left:15px;">
 					<option value="0">超级管理员</option>
-					<option value="1" selected = "selected">管理员</option>
+					<option value="1">管理员</option>
+					<option value="3" selected = "selected">普通用户</option>
 					<option value="2">访客</option>
 				</select>
 			</td>

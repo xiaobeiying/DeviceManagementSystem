@@ -3,9 +3,10 @@
 require dirname(__FILE__)."/../libraries/CI_Log.php";
 require dirname(__FILE__)."/../libraries/CI_Util.php";
 
-//写入操作日志
+
+//写入操作日志   
 $theTime = date('y-m-d h:i:s',time());
-//$who = "李明";
+
 $who = getMemberFromIP();
 $where = "从".$_SERVER['HTTP_HOST'];
 $doThings = "--访问了登录界面";

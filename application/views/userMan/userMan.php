@@ -39,9 +39,13 @@ $users = $this->ManUserMod->getUsersInfo($role,$login_name);
 <link href="<?php echo base_url();?>static/devMS/css/userMan/userMan.css" rel="stylesheet">
 <script src="<?php echo base_url();?>static/devMS/js/userMan/userMan.js"></script>
 
-<div style="width:100%;margin-top:5px;text-align:right">
-	<button type="button" class="btn btn-success" style="margin-right: 100px;margin-bottom:10px;" onclick="toAddUserPage()">添 加 用 户</button>
-</div>
+<?php
+if($role == 0 || $role == 1){
+	echo '<div style="width:100%;margin-top:5px;text-align:right">
+		<button type="button" class="btn btn-success" style="margin-right: 100px;margin-bottom:10px;" onclick="toAddUserPage()">添 加 用 户</button>
+	</div>';
+}
+?>
 <div>
 	<table class="table table-striped">
 		<thead>
@@ -52,7 +56,7 @@ $users = $this->ManUserMod->getUsersInfo($role,$login_name);
 				<th>登录名</th>
 				<th>密码</th>
 				<th>角色</th>
-				<th>删除</th>
+				<?php if($role == 0){echo '<th>删除</th>';}?>
 				<th>修改</th>
 			</tr>
 		</thead>
@@ -64,9 +68,11 @@ $users = $this->ManUserMod->getUsersInfo($role,$login_name);
 				'"src="http://'.$host.'/imgs/portrait/'.trim($row->icon).'"></img>';
 				echo '</td><td id="label_'.$row->id.'">'.$row->user_name.'</td><td>'.$row->login_name.'</td><td>'.$row->password.'</td>';
 				echo '</td><td id="label_'.$row->id.'">';
-				if($row->role == 0){echo "超级管理员";}else if($row->role == 1){echo "管理员";}else if($row->role == 2){echo "访客";}
+				if($row->role == 0){echo "超级管理员";}else if($row->role == 1){echo "管理员";}else if($row->role == 3){echo "普通用户";}else if($row->role == 2){echo "访客";}
 				echo '</td>';
-				echo '<td><button type="button" class="btn btn-sm btn-danger" id="del_'.$row->id.'" onclick="delAnUser()">删 除</button></td>';
+				if($role == 0){
+					echo '<td><button type="button" class="btn btn-sm btn-danger" id="del_'.$row->id.'" onclick="delAnUser()">删 除</button></td>';
+				}
 				echo '<td><button type="button" class="btn btn-sm btn-warning" id="change_'.$row->id.'" onclick="toChangeUserInfoPage()">修 改</button></td>';	
 				$i++;
 			}

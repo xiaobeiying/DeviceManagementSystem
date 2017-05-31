@@ -26,7 +26,7 @@ class ManPicMod extends CI_Model {
 		return $arr;
 	}
 	
-	//更具id获取设备图片
+	//根据id获取设备图片
 	public function getPicsFromId($id){
 		$queryString = 'select path from dev_imgs where device_id='.$id;
 		$query = $this->db->query($queryString);

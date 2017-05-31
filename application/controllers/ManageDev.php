@@ -88,7 +88,7 @@ class ManageDev extends CI_Controller {
 		//$who = $borrower;
 		$who = getMemberFromIP();
 		$where = "从".$_SERVER['HTTP_HOST'];
-		$doThings = "申请了设备设备：".$device_name;
+		$doThings = "申请了设备：".$device_name;
 		writeToLog($theTime,$who,$where,$doThings);
 		
 		echo "scuess";
@@ -106,7 +106,7 @@ class ManageDev extends CI_Controller {
 		//$who = "李明";
 		$who = getMemberFromIP();
 		$where = "从".$_SERVER['HTTP_HOST'];
-		$doThings = "取消申请了设备设备：".$device_name;
+		$doThings = "取消申请了设备：".$device_name;
 		writeToLog($theTime,$who,$where,$doThings);
 		
 		echo "scuess";

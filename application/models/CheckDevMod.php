@@ -64,9 +64,6 @@ class CheckDevMod extends CI_Model {
 				path,device_id,old_dev from devices left join dev_imgs on devices.id=dev_imgs.device_id ORDER BY add_time DESC';
 		$query = $this->db->query($queryString);
 		$arr = $query->result();
-		//return $arr;
-		$query = $this->db->query($queryString);
-		$arr = $query->result();
 		$retu = array();
 		foreach($arr as $va){
 			if(isset($retu[$va->device_id])){

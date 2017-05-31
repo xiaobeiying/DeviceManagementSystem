@@ -47,7 +47,7 @@ $users = $this->ManUserMod->getManagerInfo();
 				'"src="http://'.$host.'/imgs/portrait/'.trim($row->icon).'"></img>';
 				echo '</td><td id="label_'.$row->id.'">'.$row->user_name.'</td>';
 				echo '</td><td id="label_'.$row->id.'">';
-				if($row->role == 0){echo "超级管理员";}else if($row->role == 1){echo "管理员";}else if($row->role == 2){echo "访客";}
+				if($row->role == 0){echo "超级管理员";}else if($row->role == 1){echo "管理员";}else if($row->role == 3){echo "普通用户";}else if($row->role == 2){echo "访客";}
 				echo '</td>';
 				$i++;
 			}
