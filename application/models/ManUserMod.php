@@ -164,8 +164,13 @@ class ManUserMod extends CI_Model {
 		$queryString = 'select user_name from users where session="'.$session.'"';
 		$query = $this->db->query($queryString);
 		$arr = array($query->result());
-		$currentUser = current($arr[0])->user_name;
-		return $currentUser;
+		if(count($arr) == 1){
+			$currentUser = current($arr[0])->user_name;
+			return $currentUser;
+		}else{
+			$currentUser = "";
+			return $currentUser;
+		}
 	}
 	
 	//判断是否登录

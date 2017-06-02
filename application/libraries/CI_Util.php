@@ -15,21 +15,24 @@ function getMemberFromIP() {
 			return "未知用户";
 		}else{
 			$session = $_POST['session'];
-			/**
+			
 			//引用ManUserMod.php中的getUserInfoFromSession()方法
 			$loginUserInfo = new ManUserMod();
 			if(count($loginUserInfo->getUserInfoFromSession($session)) == "1"){
 				$ar = array($loginUserInfo->getUserInfoFromSession($session));   //或者先声明$ar = array();再赋值$ar[] = array();
-				//print_r(current($ar[0]));
 				$currentUser = current($ar[0])->login_name;
-			}*/
+				return $currentUser;
+			}else{
+				return "Session过期";  //此用户在其他地方登陆，session过期
+			}
 			
+			/**
 			//引用ManUserMod.php中的getUserNameFromSession()方法
 			$loginUserInfo = new ManUserMod();
 			$currentUser = $loginUserInfo->getUserNameFromSession($session);
 			if($currentUser != ""){
 				return $currentUser;
-			}
+			}**/
 		}
 	}else{
 		return "Session为空";

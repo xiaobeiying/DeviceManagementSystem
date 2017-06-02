@@ -15,8 +15,10 @@ $isLogin = $this->ManUserMod->isLogin($session);
 $userInfo = $this->ManUserMod->getUserInfoFromSession($session);
 if(count($userInfo) != 0){
 	$curLoginRole = $userInfo[0]->role;
+	$curUserName = $userInfo[0]->user_name;
 }else{
 	$curLoginRole = 2;
+	$curUserName = "";
 }
 
 ?>
@@ -32,7 +34,6 @@ if(count($userInfo) != 0){
 		<label style="color:white;font-size:20px;margin-left:45px;margin-top:8px;">小影设备管理系统</label>
 		<div>
 			<?php if($isLogin == 1){
-				$curUserName = $this->ManUserMod->getUserNameFromSession($session);
 				echo '<label id="logout_lagel" class="login_label" onclick="logout()">退出</label>';
 				echo '<label style="font-size: 14px;padding-top: 10px;color: #31B0F4;margin-left: 0px;height: 100%;width: 110px;background-color: #1A4FA3;text-align: center;" >',$curUserName,'</label>';
 			}else{
