@@ -10,7 +10,7 @@ class ManDevMod extends CI_Model {
 	
 	//条件查询符合要求的设备
 	public function searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev){
-		$queryString = "select a.id,a.device_name,a.model,a.theNum,a.owner,a.status,a.borrower,a.borrow_time,b.path from devices a,dev_imgs b where a.id=b.device_id";
+		$queryString = "select a.id,a.device_name,a.model,a.theNum,a.owner,a.status,a.borrower,a.old_dev,a.borrow_time,b.path from devices a,dev_imgs b where a.id=b.device_id";
 		
 		if($plateform == "all"){
 			

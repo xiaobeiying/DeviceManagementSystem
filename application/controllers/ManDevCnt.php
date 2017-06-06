@@ -22,6 +22,7 @@ class ManDevCnt extends CI_Controller {
 		$status = $_GET['status'];
 		$category = $_GET['category'];
 		$borrower = $_GET['borrower'];
+		//$old_dev = "all";
 		$old_dev = $_GET['old_dev'];
 		
 		echo json_encode($this->ManDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev));

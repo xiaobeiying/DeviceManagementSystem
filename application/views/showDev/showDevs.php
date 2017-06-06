@@ -29,7 +29,7 @@ if($requestMethod == "POST"){
 	$status = $_POST['status'];
 	$category = $_POST['category'];
 	$borrower = $_POST['borrower'];
-	$old_dev = $_POST['old_dev'];
+	//$old_dev = $_POST['old_dev'];
 }else if($requestMethod == "GET"){
 	$datas = $this->DevManageMod->getDevInfo();
 	$plateform = 'all';
@@ -41,7 +41,7 @@ if($requestMethod == "POST"){
 	$old_dev = "all";
 }
 
-$datas = $this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev);
+$datas = $this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower);
 
 $theTime = date('y-m-d h:i:s',time());
 $who = getMemberFromIP();

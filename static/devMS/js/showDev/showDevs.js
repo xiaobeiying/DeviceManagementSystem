@@ -75,11 +75,10 @@ function searchDevs(e){
 	dev_status = $("#dev_status").val();
 	dev_category = $("#dev_category").val();
 	borrower = $("#borrower").val();
-	old_dev = $("#old_dev").val();
 	
 	var url = host + "/index.php/Welcome/searchDevices";
 	//window.location.href="http://" + url;
-	data = {plateform:dev_plateform,brand:dev_brand,version:dev_version,status:dev_status,category:dev_category,borrower:borrower,old_dev:old_dev,session:session};
+	data = {plateform:dev_plateform,brand:dev_brand,version:dev_version,status:dev_status,category:dev_category,borrower:borrower,session:session};
 	post("http://" + url,data);
 	
 }
