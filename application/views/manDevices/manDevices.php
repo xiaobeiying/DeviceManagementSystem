@@ -68,15 +68,19 @@ writeToLog($theTime,$who,$where,$doThings);
 					<label class="label_style">品牌：</label>
 					<select id="dev_brand" class="select_style form-control">
 						<option value="all">All</option>
-						<option value="三星">三星</option>
-						<option value="小米">小米</option>
-						<option value="华为">华为</option>
-						<option value="魅族">魅族</option>
-						<option value="oppo">OPPO</option>
-						<option value="vivo">VIVO</option>
-						<option value="联想">联想</option>
-						<option value="中兴">中兴</option>
-						<option value="nexus">Nexus</option>
+						<option value="Samsung">Samsung</option>
+						<option value="XiaoMI">XiaoMI</option>
+						<option value="HuaWei">HuaWei</option>
+						<option value="Motorola">Motorola</option>
+						<option value="LG">LG</option>
+						<option value="ASUS">ASUS</option>
+						<option value="Nokia">Nokia</option>
+						<option value="MeiZu">MeiZu</option>
+						<option value="OPPO">OPPO</option>
+						<option value="VIVO">VIVO</option>
+						<option value="Lenovo">Lenovo</option>
+						<option value="ZTE">ZTE</option>
+						<option value="Nexus">Nexus</option>
 						<option value="其他">其他</option>
 					</select>
 				</td>

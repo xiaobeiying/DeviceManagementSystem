@@ -16,8 +16,9 @@ class ShowDevCnt extends CI_Controller {
 		$status = $_GET['status'];
 		$category = $_GET['category'];
 		$borrower = $_GET['borrower'];
+		$old_dev = $_GET['old_dev'];
 		
-		echo json_encode($this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower));
+		echo json_encode($this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev));
 	}
 	
 	//根据签借人获取设备

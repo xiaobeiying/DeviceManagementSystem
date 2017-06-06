@@ -29,7 +29,7 @@ if($requestMethod == "POST"){
 	$status = $_POST['status'];
 	$category = $_POST['category'];
 	$borrower = $_POST['borrower'];
-	$old_dev = "all";
+	$old_dev = $_POST['old_dev'];
 }else if($requestMethod == "GET"){
 	$datas = $this->DevManageMod->getDevInfo();
 	$plateform = 'all';
@@ -70,15 +70,19 @@ writeToLog($theTime,$who,$where,$doThings);
 					<label class="label_style">品牌：</label>
 					<select id="dev_brand" class="select_style form-control">
 						<option value="all">All</option>
-						<option value="三星">三星</option>
-						<option value="小米">小米</option>
-						<option value="华为">华为</option>
-						<option value="魅族">魅族</option>
-						<option value="oppo">OPPO</option>
-						<option value="vivo">VIVO</option>
-						<option value="联想">联想</option>
-						<option value="中兴">中兴</option>
-						<option value="nexus">Nexus</option>
+						<option value="Samsung">Samsung</option>
+						<option value="XiaoMI">XiaoMI</option>
+						<option value="HuaWei">HuaWei</option>
+						<option value="Motorola">Motorola</option>
+						<option value="LG">LG</option>
+						<option value="ASUS">ASUS</option>
+						<option value="Nokia">Nokia</option>
+						<option value="MeiZu">MeiZu</option>
+						<option value="OPPO">OPPO</option>
+						<option value="VIVO">VIVO</option>
+						<option value="Lenovo">Lenovo</option>
+						<option value="ZTE">ZTE</option>
+						<option value="Nexus">Nexus</option>
 						<option value="其他">其他</option>
 					</select>
 				</td>
@@ -152,6 +156,8 @@ writeToLog($theTime,$who,$where,$doThings);
 				$i = 1;
 				if($isLogin == 1){
 					foreach ($datas as $row){
+						//print_r($row);
+						if($row->old_dev == 0){
 						echo '<tr><td>'.$i.'</td><td><img onclick="showDevInfo()" class="dev_icon" id="icon_'.$row->id.'"src="http://'.$host.'/files/thumbnail/'.trim($row->path[0]).'"></img>';
 						echo '</td><td id="label_'.$row->id.'">'.$row->device_name.'</td><td>'.$row->model.'</td><td>'.$row->theNum.'</td>';
 						if($row->status == 0){
@@ -172,9 +178,11 @@ writeToLog($theTime,$who,$where,$doThings);
 						<td>'.$row->borrow_time.'</td>
 						</tr>';
 						$i = $i + 1;
-						}
+				}}
 				}else if($isLogin == 0){
 					foreach ($datas as $row){
+						//print_r($row);
+						if($row->old_dev == 0){
 						echo '<tr><td>'.$i.'</td><td><img onclick="showDevInfo()" class="dev_icon" id="icon_'.$row->id.'"src="http://'.$host.'/files/thumbnail/'.trim($row->path[0]).'"></img>';
 						echo '</td><td id="label_'.$row->id.'">'.$row->device_name.'</td><td>'.$row->model.'</td><td>'.$row->theNum.'</td>';
 						if($row->status != ""){
@@ -185,7 +193,7 @@ writeToLog($theTime,$who,$where,$doThings);
 						<td>'.$row->borrow_time.'</td>
 						</tr>';
 						$i = $i + 1;
-					}
+				}}
 				}
 			?>
 				

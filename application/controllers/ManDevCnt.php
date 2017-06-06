@@ -2,6 +2,10 @@
 require dirname(__FILE__)."/../libraries/CI_Log.php";
 require dirname(__FILE__)."/../libraries/CI_Util.php";
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+//设置时区为东八区，获取当前服务器系统时间
+date_default_timezone_set('Asia/Shanghai');
+
 class ManDevCnt extends CI_Controller {
 	
 	public function __construct(){
@@ -18,8 +22,9 @@ class ManDevCnt extends CI_Controller {
 		$status = $_GET['status'];
 		$category = $_GET['category'];
 		$borrower = $_GET['borrower'];
+		$old_dev = $_GET['old_dev'];
 		
-		echo json_encode($this->ManDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower));
+		echo json_encode($this->ManDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev));
 	}
 	
 	
