@@ -15,6 +15,13 @@ function changeDevInfo(e){
 	dev_category = $("#dev_category").val();
 	dev_other = $("#dev_other").val();
 	dev_comments = $("#dev_comments").val();
+	dev_resolution = $("#dev_resolution").val();
+	dev_cpu = $("#dev_cpu").val();
+	dev_gpu = $("#dev_gpu").val();
+	dev_cores = $("#dev_cores").val();
+	dev_hdexport = $("#dev_hdexport").val();
+	dev_hdcamera = $("#dev_hdcamera").val();
+	dev_architecture = $("#dev_architecture").val();
 	
 	
 	if(typeof($(".input_style").attr("disabled"))=="undefined"){
@@ -22,11 +29,9 @@ function changeDevInfo(e){
 		$.ajax({
         	type: "post",
             url: "http://" + host + "/index.php/ManDevCnt/changeDevInfo",
-            data: {"id":id,"dev_name":dev_name,"dev_model":dev_model,"dev_num":dev_num,"dev_owner":dev_owner,
-            		"dev_plateform":dev_plateform,"dev_brand":dev_brand,"dev_version":dev_version,
-            		"dev_category":dev_category,"dev_other":dev_other,"dev_comments":dev_comments},
+            data: {"id":id,"dev_name":dev_name,"dev_model":dev_model,"dev_num":dev_num,"dev_owner":dev_owner,"dev_plateform":dev_plateform,"dev_brand":dev_brand,"dev_version":dev_version,"dev_category":dev_category,"dev_other":dev_other,"dev_comments":dev_comments,"dev_resolution":dev_resolution,"dev_cpu":dev_cpu,"dev_gpu":dev_gpu,"dev_cores":dev_cores,"dev_hdexport":dev_hdexport,"dev_hdcamera":dev_hdcamera,"dev_architecture":dev_architecture},
             success: function (result) {
-            	if(result == "sucess"){
+            	if(result == "success"){
             		alert("修改成功");
             		location.reload(); 
             	}else{
@@ -56,7 +61,7 @@ function deleteDevImg(e){
 	        url: "http://" + host + "/index.php/ManPicCnt/delTheDevPic",
 	        data: {"pic":pic},
 	        success: function (result) {
-	        	if(result == "sucess"){
+	        	if(result == "success"){
 	        		location.reload(); 
 	        	}else{
 	        		alert("删除失败");

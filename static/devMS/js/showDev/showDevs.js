@@ -19,7 +19,7 @@ function applyFor(e){
             url: "http://" + host + "/index.php/ManageDev/applyForDev",
             data: {"id":deviceId,"borrower":borrower,"device_name":deviceName},
             success: function (result) {
-            	if(result == "scuess"){
+            	if(result == "success"){
             		//alert(result);
             		location.reload(); 
             	}else{
@@ -42,7 +42,7 @@ function cancleApplyFor(e){
         url: "http://" + host + "/index.php/ManageDev/cancleApplyForDev",
         data: {"id":deviceId,"device_name":deviceName},
         success: function (result) {
-          if(result == "scuess"){
+          if(result == "success"){
             	//alert(result);
             	location.reload(); 
             }else{
@@ -75,10 +75,13 @@ function searchDevs(e){
 	dev_status = $("#dev_status").val();
 	dev_category = $("#dev_category").val();
 	borrower = $("#borrower").val();
+	dev_cores = $("#dev_cores").val();
+	dev_resolution = $("#dev_resolution").val();
+	dev_hdexport = $("#dev_hdexport").val();
 	
 	var url = host + "/index.php/Welcome/searchDevices";
 	//window.location.href="http://" + url;
-	data = {plateform:dev_plateform,brand:dev_brand,version:dev_version,status:dev_status,category:dev_category,borrower:borrower,session:session};
+	data = {plateform:dev_plateform,brand:dev_brand,version:dev_version,status:dev_status,category:dev_category,borrower:borrower,session:session,phone_Cores:dev_cores,phone_resolution:dev_resolution,hdexport:dev_hdexport};
 	post("http://" + url,data);
 	
 }

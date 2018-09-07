@@ -24,6 +24,9 @@ if($requestMethod == "POST"){
 	$category = $_POST['category'];
 	$borrower = $_POST['borrower'];
 	$old_dev = $_POST['old_dev'];
+	$phone_Cores = $_POST['phone_Cores'];
+	$phone_resolution = $_POST['phone_resolution'];
+	$hdexport = $_POST['hdexport'];
 }else if($requestMethod == "GET"){
 	$datas = $this->DevManageMod->getDevInfo();
 	$plateform = 'all';
@@ -33,12 +36,14 @@ if($requestMethod == "POST"){
 	$category = 'all';
 	$borrower = '';
 	$old_dev = 'all';
+	$phone_Cores = 'all';
+	$phone_resolution = 'all';
+	$hdexport = 'all';
 }
 
-
-$datas = $this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev);
-
-
+//TODO: 把ShowDevMod中的searchDevs()改成ManDevMod中的searchDevs()
+//$datas = $this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$phone_Cores,$phone_resolution,$hdexport);
+$datas = $this->ManDevMod->searchManDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev,$phone_Cores,$phone_resolution,$hdexport);
 
 $theTime = date('y-m-d h:i:s',time());
 //$who = "李明";
@@ -58,7 +63,7 @@ writeToLog($theTime,$who,$where,$doThings);
 			<tr>
 				<td style="width:25%;">
 					<label class="label_style">平台：</label>
-					<select id="dev_plateform" class="select_style form-control">
+					<select id="dev_plateform" class="select_style form-control" style="margin-left:15px;">
 						<option value="all">All</option>
 						<option value="android">Android</option>
 						<option value="ios">iOS</option>
@@ -66,7 +71,7 @@ writeToLog($theTime,$who,$where,$doThings);
 				</td>
 				<td style="width:25%;">
 					<label class="label_style">品牌：</label>
-					<select id="dev_brand" class="select_style form-control">
+					<select id="dev_brand" class="select_style form-control" style="margin-left:15px;">
 						<option value="all">All</option>
 						<option value="Samsung">Samsung</option>
 						<option value="XiaoMI">XiaoMI</option>
@@ -101,6 +106,8 @@ writeToLog($theTime,$who,$where,$doThings);
 						<option value="ios8">ios8</option>
 						<option value="ios9">ios9</option>
 						<option value="ios10">ios10</option>
+						<option value="ios11">ios11</option>
+						<option value="ios12">ios12</option>
 					</select>
 				</td>
 				<td style="width:25%;">
@@ -115,8 +122,43 @@ writeToLog($theTime,$who,$where,$doThings);
 			</tr>
 			<tr>
 				<td>
+					<label>Cores：</label>
+					<select id="dev_cores"  class="select_style form-control">
+						<option value="all" >All</option>
+						<option value="2">2</option>
+						<option value="4">4</option>
+						<option value="8">8</option>
+						<option value="16">16</option>
+						<option value="其他">其他</option>
+					</select>
+				</td>
+				<td>
+					<label>分辨率：</label>
+					<select id="dev_resolution"  class="select_style form-control">
+						<option value="all" >All</option>
+						<option value="480">480P</option>
+						<option value="540">540P</option>
+						<option value="720">720P</option>
+						<option value="1080">1080P</option>
+						<option value="1140">2K</option>
+						<option value="其他">其他</option>
+					</select>
+				</td>
+				<td>
+					<label class="label_style" class="label_style">HDExpt：</label>
+					<select id="dev_hdexport" class="select_style form-control" style="margin-left:5px;">
+						<option value="all">All</option>
+						<option value="0">480P</option>
+						<option value="1">720P</option>
+						<option value="2">1080P</option>
+						<option value="3">2K</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<label>分类：</label>
-					<select id="dev_category"  class="select_style form-control" style="margin-left:0px;">
+					<select id="dev_category"  class="select_style form-control" style="margin-left:15px;">
 						<option value="all" >All</option>
 						<option value="手机">手机</option>
 						<option value="平板">平板</option>
@@ -126,8 +168,8 @@ writeToLog($theTime,$who,$where,$doThings);
 				</td>
 				<td>
 					<label>可用：</label>
-					<select id="old_dev"  class="select_style form-control" style="margin-left:0px;">
-						<option value="all" >All</option>
+					<select id="old_dev"  class="select_style form-control" style="margin-left:15px;">
+						<option value="all">All</option>
 						<option value="0">未报废</option>
 						<option value="1">已报废</option>
 					</select>
@@ -140,7 +182,7 @@ writeToLog($theTime,$who,$where,$doThings);
 		</table>
 	</div>
 	<div>
-		<button class="btn btn-primary" style="width:100px;" id="search_btn" onclick="searchDevs()">查 询</button>
+		<button class="btn btn-primary" style="width:100px;" id="search_btn" onclick="searchManDevs()">查 询</button>
 	</div>
 	<div>
 		<table class="table table-striped">
@@ -151,6 +193,9 @@ writeToLog($theTime,$who,$where,$doThings);
 					<th>设备名</th>
 					<th>型号</th>
 					<th>编号#</th>
+					<th>HDExpt</th>
+					<th>Cores</th>
+					<th>分辨率</th>
 					<th>签借人</th>
 					<th>操作</th>
 					<th>删除</th>
@@ -165,6 +210,16 @@ writeToLog($theTime,$who,$where,$doThings);
 				foreach ($datas as $row){
 					echo '<tr><td>'.$i.'</td><td><img onclick="toChangeDevInfo()" class="dev_icon" id="icon_'.$row->id.'"src="http://'.$host.'/files/thumbnail/'.trim($row->path[0]).'"></img>';
 					echo '</td><td id="label_'.$row->id.'">'.$row->device_name.'</td><td>'.$row->model.'</td><td>'.$row->theNum.'</td>';
+					if($row->hdexport == 0){
+							echo '<td>480P</td>';
+						}else if($row->hdexport == 1){
+							echo '<td>720P</td>';
+						}else if($row->hdexport == 2){
+							echo '<td>1080P</td>';
+						}else if($row->hdexport == 3){
+							echo '<td>2K</td>';
+						}
+					echo '<td>'.$row->phone_Cores.'</td><td>'.$row->phone_resolution.'</td>';
 					if($row->status == 0){
 						echo '<td><input type="text" class="form-control" style="width:130px;" id="input_'.$row->id.'"></td>';
 						echo '<td><button class="btn btn-sm btn-success" onclick="confirmBorrowed()" id="confirm_'.$row->id.'">借 出</button></td>';
@@ -208,5 +263,8 @@ $(document).ready(function(){
 	$("#dev_category").val("<?php echo $category;?>");
 	$("#borrower").val("<?php echo $borrower;?>");
 	$("#old_dev").val("<?php echo $old_dev;?>");
+	$("#dev_cores").val("<?php echo $phone_Cores;?>");
+	$("#dev_resolution").val("<?php echo $phone_resolution;?>");
+	$("#dev_hdexport").val("<?php echo $hdexport;?>");
 }); 
 </script> 

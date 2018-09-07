@@ -129,7 +129,7 @@ class ManPicCnt extends CI_Controller {
 			unlink($img);
 			unlink($thumImg);
 		}
-		echo "sucess";
+		echo "success";
 	}
 	
 	//判断thumbnail中的图片是否在数据库中也有
@@ -181,7 +181,7 @@ class ManPicCnt extends CI_Controller {
 		$thumImg = "./files/thumbnail/".$file;
 		unlink($img);
 		unlink($thumImg);
-		echo "sucess";
+		echo "success";
 	}
 	
 	function callInterfaceCommon($URL,$type,$params,$headers){

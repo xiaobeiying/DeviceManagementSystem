@@ -19,7 +19,7 @@ function applyFor(e){
             url: "http://" + host + "/index.php/ManageDev/applyForDev",
             data: {"id":deviceId,"borrower":borrower,"device_name":deviceName},
             success: function (result) {
-            	if(result == "scuess"){
+            	if(result == "success"){
             		//alert(result);
             		location.reload(); 
             	}else{
@@ -42,7 +42,7 @@ function cancleApplyFor(e){
         url: "http://" + host + "/index.php/ManageDev/cancleApplyForDev",
         data: {"id":deviceId,"device_name":deviceName},
         success: function (result) {
-          if(result == "scuess"){
+          if(result == "success"){
             	//alert(result);
             	location.reload(); 
             }else{
@@ -64,7 +64,7 @@ function toChangeDevInfo(e){
 	//window.location.href="http://" + host + "/index.php/Welcome/manDevices/" + deviceId;
 }
 
-function searchDevs(e){
+function searchManDevs(e){
 	e = e || window.event;
 	id = e.target.id;
 	session = $.cookie('session');
@@ -76,10 +76,13 @@ function searchDevs(e){
 	dev_category = $("#dev_category").val();
 	borrower = $("#borrower").val();
 	old_dev = $("#old_dev").val();
+	dev_cores = $("#dev_cores").val();
+	dev_resolution = $("#dev_resolution").val();
+	dev_hdexport = $("#dev_hdexport").val();
 	
 	var url = host + "/index.php/Welcome/manDevices";
 	//window.location.href="http://" + url;
-	data = {plateform:dev_plateform,brand:dev_brand,version:dev_version,status:dev_status,category:dev_category,borrower:borrower,old_dev:old_dev,session:session};
+	data = {plateform:dev_plateform,brand:dev_brand,version:dev_version,status:dev_status,category:dev_category,borrower:borrower,old_dev:old_dev,session:session,phone_Cores:dev_cores,phone_resolution:dev_resolution,hdexport:dev_hdexport};
 	post("http://" + url,data);
 	
 }
@@ -102,7 +105,7 @@ function modifyBorrower(e){
 	        url: "http://" + host + "/index.php/ManDevCnt/changeBorrower",
 	        data: {"id":idNum,"borrower":borrower},
 	        success: function (result) {
-	          if(result == "sucess"){
+	          if(result == "success"){
 	            	//alert(result);
 	        	  	alert("修改成功！");
 	            	location.reload(); 
@@ -132,7 +135,7 @@ function deleteDev(e){
 	        url: "http://" + host + "/index.php/ManDevCnt/deleteDev",
 	        data: {"id":id},
 	        success: function (result) {
-	          if(result == "sucess"){
+	          if(result == "success"){
 	            	//alert(result);
 	            	location.reload(); 
 	            }else{
@@ -173,7 +176,7 @@ function confirmReturned(e){
         url: "http://" + host + "/index.php/ManDevCnt/confirmReturned",
         data: {"id":id,"borrower":borrower},
         success: function (result) {
-          if(result == "sucess"){
+          if(result == "success"){
             	//alert(result);
             	location.reload(); 
             }else{
@@ -205,7 +208,7 @@ function confirmBorrowed(e){
 	        url: "http://" + host + "/index.php/ManDevCnt/confirmBorrowed",
 	        data: {"id":id,"borrower":borrower},
 	        success: function (result) {
-	          if(result == "sucess"){
+	          if(result == "success"){
 	            	//alert(result);
 	            	location.reload(); 
 	            }else{
@@ -233,7 +236,7 @@ function refuseBorrowed(e){
         url: "http://" + host + "/index.php/ManDevCnt/refuseBorrowed",
         data: {"id":id,"borrower":borrower},
         success: function (result) {
-          if(result == "sucess"){
+          if(result == "success"){
             	location.reload(); 
             }else{
            		alert("拒绝失败！");

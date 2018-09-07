@@ -19,7 +19,7 @@ function changeUserInfo(e){
             url: "http://" + host + "/index.php/ManUserCnt/changeUserInfo",
             data: {"id":id,"user_name":user_name,"password":password,"login_name":login_name,"role":role,"login_time":login_time,"registe_time":registe_time,"session":session},
             success: function (result) {
-            	if(result == "sucess"){
+            	if(result == "success"){
             		alert("修改成功");
             		location.reload(); 
             	}else{
@@ -51,7 +51,7 @@ function changeUserInfoPart(e){
             url: "http://" + host + "/index.php/ManUserCnt/changeUserInfoPart",
             data: {"id":id,"user_name":user_name,"password":password,"login_name":login_name},
             success: function (result) {
-            	if(result == "sucess"){
+            	if(result == "success"){
             		alert("修改成功");
             		location.reload(); 
             	}else{
@@ -81,7 +81,7 @@ function modifyIcon(e){
         url: "http://" + host + "/index.php/ManUserCnt/changeUserIcon",
         data: {"id":id,"icon":val},
         success: function (result) {
-        	if(result == "sucess"){
+        	if(result == "success"){
         		
         	}else{
         		

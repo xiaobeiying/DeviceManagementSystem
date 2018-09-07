@@ -11,7 +11,7 @@ function cancleApplyFor(e){
         url: "http://" + host + "/index.php/ManageDev/cancleApplyForDev",
         data: {"id":deviceId,"device_name":deviceName},
         success: function (result) {
-          if(result == "scuess"){
+          if(result == "success"){
             	//alert(result);
             	location.reload(); 
             }else{

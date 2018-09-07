@@ -16,7 +16,7 @@ class DevManageMod extends CI_Model {
 	
 	//向数据库添加新设备
 	public function addDevice($devName,$devModel,$devNum,$devPlateform,$devBrand,$devVersion,
-			$devOwner,$devOther,$devComments,$devCategory,$addTime,$img_conunt,$imgs){
+			$devOwner,$devOther,$devComments,$devCategory,$addTime,$img_conunt,$imgs,$devResolution,$devCPU,$devGPU,$devCores,$devHDExport,$devHDCamera,$devArchitecture){
 		//向数据库插入新设备
 		$data = array(
 				'device_name' => $devName,
@@ -30,6 +30,13 @@ class DevManageMod extends CI_Model {
 				'comments' => $devComments,
 				'category' => $devCategory,
 				'add_time' => $addTime,
+				'phone_resolution' => $devResolution,
+				'phone_CPU' => $devCPU,
+				'phone_GPU' => $devGPU,
+				'phone_Cores' => $devCores,
+				'hdexport' => $devHDExport,
+				'camera_1080p' => $devHDCamera,
+				'phone_Architecture' => $devArchitecture,
 		);
 		$this->db->insert('devices', $data);
 		
@@ -54,7 +61,7 @@ class DevManageMod extends CI_Model {
 	}
 	
 	public function getDevInfo(){
-		$query = $this->db->query("select a.id,a.device_name,a.model,a.theNum,a.owner,a.status,a.borrower,a.old_dev,a.borrow_time,b.path from devices a,dev_imgs b where a.id=b.device_id");
+		$query = $this->db->query("select a.id,a.device_name,a.model,a.theNum,a.owner,a.status,a.borrower,a.old_dev,a.borrow_time,a.phone_Cores,a.phone_resolution,a.hdexport,b.path from devices a,dev_imgs b where a.id=b.device_id");
 		$arr = $query->result();
 		//$jresult = json_encode($arr);
 		return $arr;

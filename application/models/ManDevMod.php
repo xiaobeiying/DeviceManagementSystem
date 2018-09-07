@@ -9,9 +9,11 @@ class ManDevMod extends CI_Model {
 	}
 	
 	//条件查询符合要求的设备
-	public function searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev){
-		$queryString = "select a.id,a.device_name,a.model,a.theNum,a.owner,a.status,a.borrower,a.old_dev,a.borrow_time,b.path from devices a,dev_imgs b where a.id=b.device_id";
+	public function searchManDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev,$phone_Cores,$phone_resolution,$hdexport){
 		
+		$queryString = "select a.id,device_name,model,theNum,owner,status,borrower,old_dev,borrow_time,hdexport,phone_Cores,phone_resolution,path,device_id from devices a left join dev_imgs b on a.id=b.device_id";
+		
+		$queryString = $queryString.' where a.id != ""';
 		if($plateform == "all"){
 			
 		}else{
@@ -42,17 +44,40 @@ class ManDevMod extends CI_Model {
 		}else{
 			$queryString = $queryString.' and a.borrower like "%'.$borrower.'%"';
 		}
-		if($old_dev == ""){
+		if($old_dev == "all"){
 			
 		}else{
-			$queryString = $queryString.' and a.old_dev like "%'.$old_dev.'%"';
+			$queryString = $queryString.' and a.old_dev="'.$old_dev.'"';
 		}
-		
+		if($phone_Cores == "all"){
+			
+		}else{
+			$queryString = $queryString.' and a.phone_Cores="'.$phone_Cores.'"';
+		}
+		if($phone_resolution == "all"){
+			
+		}else{
+			$queryString = $queryString.' and a.phone_resolution like "%'.$phone_resolution.'%"';
+		}
+		if($hdexport == "all"){
+
+		}else{
+			$queryString = $queryString.' and a.hdexport="'.$hdexport.'"';
+		}
 		
 		$query = $this->db->query($queryString);
 		$arr = $query->result();
-		$jresult = json_encode($arr);
-		return $arr;	
+		$retu = array();
+		foreach($arr as $va){
+			if(isset($retu[$va->device_id])){
+				$retu[$va->device_id]->path[] = $va->path;
+				continue;
+			}else{
+				$va->path = array($va->path);
+				$retu[$va->id] = $va;
+			}
+		}
+		return $retu;
 	}
 	
 
@@ -65,7 +90,7 @@ class ManDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "sucess";
+		return "success";
 	}
 	
 	//拒绝申请设备
@@ -77,7 +102,7 @@ class ManDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "sucess";
+		return "success";
 	}
 	
 	//归还设备
@@ -89,7 +114,7 @@ class ManDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "sucess";
+		return "success";
 	}
 	
 	//删除设备
@@ -101,11 +126,11 @@ class ManDevMod extends CI_Model {
 		$this->db->delete('dev_imgs');
 		
 		
-		return "sucess";
+		return "success";
 	}
 	
 	//修改设备基本信息
-	function changeDevInfo($id,$device_name,$model,$theNum,$owner,$brand,$plateform,$version,$category,$other,$comments){
+	function changeDevInfo($id,$device_name,$model,$theNum,$owner,$brand,$plateform,$version,$category,$other,$comments,$phone_resolution,$phone_CPU,$phone_GPU,$phone_Cores,$hdexport,$camera_1080p,$phone_Architecture){
 		$id = $_POST['id'];
 		$device_name = $_POST['dev_name'];
 		$model = $_POST['dev_model'];
@@ -117,6 +142,13 @@ class ManDevMod extends CI_Model {
 		$category = $_POST['dev_category'];
 		$other = $_POST['dev_other'];
 		$comments = $_POST['dev_comments'];
+		$phone_resolution = $_POST['dev_resolution'];
+		$phone_CPU = $_POST['dev_cpu'];
+		$phone_GPU = $_POST['dev_gpu'];
+		$phone_Cores = $_POST['dev_cores'];
+		$hdexport = $_POST['dev_hdexport'];
+		$camera_1080p = $_POST['dev_hdcamera'];
+		$phone_Architecture = $_POST['dev_architecture'];
 		
 		$data = array(
 				"device_name"=>$device_name,
@@ -128,7 +160,14 @@ class ManDevMod extends CI_Model {
 				"version"=>$version,
 				"category"=>$category,
 				"other"=>$other,
-				"comments"=>$comments
+				"comments"=>$comments,
+				"phone_resolution"=>$phone_resolution,
+				"phone_CPU"=>$phone_CPU,
+				"phone_GPU"=>$phone_GPU,
+				"phone_Cores"=>$phone_Cores,
+				"hdexport"=>$hdexport,
+				"camera_1080p"=>$camera_1080p,
+				"phone_Architecture"=>$phone_Architecture
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
@@ -143,7 +182,7 @@ class ManDevMod extends CI_Model {
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
 		
-		return "sucess";
+		return "success";
 	}
 	
 	function getDevNum($id){

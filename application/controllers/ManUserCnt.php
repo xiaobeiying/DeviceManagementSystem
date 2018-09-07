@@ -63,7 +63,7 @@ class ManUserCnt extends CI_Controller {
 		$doThings = "注册了一个用户：".$login_name;
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "sucess";
+		echo "success";
 	}
 	
 	
@@ -109,7 +109,7 @@ class ManUserCnt extends CI_Controller {
 		$doThings = "删除了一个用户：".$login_name;
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "sucess";
+		echo "success";
 	}
 	
 	//添加一个用户
@@ -129,7 +129,7 @@ class ManUserCnt extends CI_Controller {
 		$doThings = "添加了一个用户".$login_name;
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "sucess";
+		echo "success";
 	}
 	
 	//修改用户信息
@@ -151,7 +151,7 @@ class ManUserCnt extends CI_Controller {
 		$doThings = "修改了".$login_name."的用户信息";
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "sucess";
+		echo "success";
 	}
 	
 	//修改部分用户信息
@@ -169,7 +169,7 @@ class ManUserCnt extends CI_Controller {
 		$doThings = "修改了".$login_name."的用户信息";
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "sucess";
+		echo "success";
 	}
 	
 	//修改用户头像
@@ -178,7 +178,7 @@ class ManUserCnt extends CI_Controller {
 		$icon = $_POST['icon'];
 		$this->ManUserMod->changeUserIcon($id,$icon);
 		
-		echo "sucess";
+		echo "success";
 	}
 	
 	//判断是否登录

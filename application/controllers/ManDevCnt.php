@@ -24,8 +24,11 @@ class ManDevCnt extends CI_Controller {
 		$borrower = $_GET['borrower'];
 		//$old_dev = "all";
 		$old_dev = $_GET['old_dev'];
+		$phone_Cores = $_GET['phone_Cores'];
+		$phone_resolution = $_GET['phone_resolution'];
+		$hdexport = $_GET['hdexport'];
 		
-		echo json_encode($this->ManDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev));
+		echo json_encode($this->ManDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev,$phone_Cores,$phone_resolution,$hdexport));
 	}
 	
 	
@@ -140,10 +143,18 @@ class ManDevCnt extends CI_Controller {
 		$category = $_POST['dev_category'];
 		$other = $_POST['dev_other'];
 		$comments = $_POST['dev_comments'];
+		$phone_resolution = $_POST['dev_resolution'];
+		$phone_CPU = $_POST['dev_cpu'];
+		$phone_GPU = $_POST['dev_gpu'];
+		$phone_Cores = $_POST['dev_cores'];
+		$hdexport = $_POST['dev_hdexport'];
+		$camera_1080p = $_POST['dev_hdcamera'];
+		$phone_Architecture = $_POST['dev_architecture'];
 		
-		$this->ManDevMod->changeDevInfo($id,$device_name,$model,$theNum,$owner,$brand,$plateform,$version,$category,$other,$comments);
 		
-		echo "sucess";
+		$this->ManDevMod->changeDevInfo($id,$device_name,$model,$theNum,$owner,$brand,$plateform,$version,$category,$other,$comments,$phone_resolution,$phone_CPU,$phone_GPU,$phone_Cores,$hdexport,$camera_1080p,$phone_Architecture);
+		
+		echo "success";
 	}
 	
 	//修改签借人

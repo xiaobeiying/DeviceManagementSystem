@@ -46,7 +46,7 @@ writeToLog($theTime,$who,$where,$doThings);
 			<tr>
 				<td>
 					<label>设备名：</label>
-					<input id="dev_name" class="form-control input_style" disabled="disabled" value="<?php echo $data->device_name;?>"></input>
+					<input id="dev_name" class="form-control input_style" style="margin-left:15px;" disabled="disabled" value="<?php echo $data->device_name;?>"></input>
 				</td>
 				<td>
 					<label>型号：</label>
@@ -54,13 +54,13 @@ writeToLog($theTime,$who,$where,$doThings);
 				</td>
 				<td>
 					<label>编号：</label>
-					<input id="dev_num" class="input_style form-control" disabled="disabled" value="<?php echo $data->theNum;?>"></input>
+					<input id="dev_num" class="input_style form-control" style="margin-left:15px;" disabled="disabled" value="<?php echo $data->theNum;?>"></input>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label>平台：</label>
-					<select id="dev_plateform"  class="input_style form-control" style="margin-left:15px;" disabled="disabled">
+					<select id="dev_plateform"  class="input_style form-control" style="margin-left:30px;" disabled="disabled">
 						<option value="android" <?php if($data->plateform == "android"){echo " selected='selected' ";}?>>Android</option>
 						<option value="ios" <?php if($data->plateform == "ios"){echo " selected='selected' ";}?>>iOS</option>
 					</select>
@@ -71,12 +71,12 @@ writeToLog($theTime,$who,$where,$doThings);
 				</td>
 				<td>
 					<label>品牌：</label>
-					<input id="dev_brand" class="input_style form-control" disabled="disabled" value="<?php echo $data->brand;?>"></input>
+					<input id="dev_brand" class="input_style form-control" style="margin-left:15px;" disabled="disabled" value="<?php echo $data->brand;?>"></input>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label class="label_style">系版本：</label>
+					<label class="label_style">系版版本：</label>
 					<input id="dev_version" class="form-control input_style" disabled="disabled" value="<?php echo $data->version;?>"></input>
 				</td>
 				<td>
@@ -87,6 +87,47 @@ writeToLog($theTime,$who,$where,$doThings);
 						<option value="台式机" <?php if($data->category == "台式机"){echo " selected='selected' ";}?>>台式机</option>
 						<option value="其他" <?php if($data->category == "其他"){echo " selected='selected' ";}?>>其他</option>
 					</select>
+				</td>
+				<td>
+					<label>分辨率：</label>
+					<input id="dev_resolution" class="form-control input_style" disabled="disabled" value="<?php echo $data->phone_resolution;?>"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>CPU：</label>
+					<input id="dev_cpu"  class="input_style form-control" style="margin-left:30px;"disabled="disabled" value="<?php echo $data->phone_CPU;?>"></input>
+				</td>
+				<td>
+					<label>GPU：</label>
+					<input id="dev_gpu"  class="input_style form-control" disabled="disabled" value="<?php echo $data->phone_GPU;?>"></input>
+				</td>
+				<td>
+					<label>Cores：</label>
+					<input id="dev_cores" class="input_style form-control" disabled="disabled" value="<?php echo $data->phone_Cores;?>"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>HDExpt：</label>
+					<select id="dev_hdexport"  class="input_style form-control" style="margin-left:15px;" disabled="disabled" value="<?php echo $data->hdexport;?>">
+						<option value="0" <?php if($data->hdexport == "0"){echo " selected='selected' ";}?>>480P</option>
+						<option value="1" <?php if($data->hdexport == "1"){echo " selected='selected' ";}?>>720P</option>
+						<option value="2" <?php if($data->hdexport == "2"){echo " selected='selected' ";}?>>1080P</option>
+						<option value="3" <?php if($data->hdexport == "3"){echo " selected='selected' ";}?>>2K</option>
+					</select>
+				</td>
+				<td>
+					<label>1080P拍摄：</label>
+					<select id="dev_hdcamera"  class="input_style form-control" disabled="disabled" value="<?php echo $data->camera_1080p;?>">
+						<option value="" <?php if($data->camera_1080p == ""){echo " selected='selected' ";}?>></option>
+						<option value="0" <?php if($data->camera_1080p == "0"){echo " selected='selected' ";}?>>No</option>
+						<option value="1" <?php if($data->camera_1080p == "1"){echo " selected='selected' ";}?>>Yes</option>
+					</select>
+				</td>
+				<td>
+					<label>Architecture：</label>
+					<input id="dev_architecture" class="input_style form-control" disabled="disabled" value="<?php echo $data->phone_Architecture;?>"></input>
 				</td>
 			</tr>
 			<tr>
@@ -116,7 +157,7 @@ writeToLog($theTime,$who,$where,$doThings);
 	</div>
 </div>
 
-<div id="image_show">
+<div id="image_show" style="margin-top:80px;">
 	<table class="table table-striped" id="table_image">
 			<?php 
 			for($i=0;$i < count($pics);$i++){

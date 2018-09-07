@@ -6,7 +6,7 @@ function changeMenu(e){
 			var host = window.location.host;
 			var url = host + "/index.php/Welcome/searchDevices";
 			//window.location.href="http://" + url;
-			data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,old_dev:'all'};
+			data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,old_dev:'all',phone_Cores:'all',phone_resolution:'all',hdexport:'all'};
 			post("http://" + url,data);
 		}else if(e.target.id == "addDevices"){
 			session = $.cookie('session');
@@ -20,7 +20,7 @@ function changeMenu(e){
 			var host = window.location.host;
 			var url = host + "/index.php/Welcome/manDevices";
 			//window.location.href="http://" + url;
-			data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,old_dev:'all'};
+			data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,old_dev:'all',phone_Cores:'all',phone_resolution:'all',hdexport:'all'};
 			post("http://" + url,data);
 		}else if(e.target.id == "checkDevices"){
 			session = $.cookie('session');
@@ -107,7 +107,7 @@ function logout(e){
 	session = $.cookie('session');
 	var host = window.location.host;
 	var url = host + "/index.php/Welcome/searchDevices";
-	data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,old_dev:'all'};
+	data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,old_dev:'all',phone_Cores:'all',phone_resolution:'all',hdexport:'all'};
 	post("http://" + url,data);
 }
 

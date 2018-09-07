@@ -24,7 +24,7 @@ function login(e){
             		var host = window.location.host;
         			var url = host + "/index.php/Welcome/searchDevices";
         			//window.location.href="http://" + url;
-        			data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,old_dev:'all'};
+        			data = {plateform:'all',brand:'all',version:'all',status:'all',category:'all',borrower:'',session:session,phone_Cores:'all',phone_resolution:'all',hdexport:'all',old_dev:'all'};
         			post("http://" + url,data);
             	}
             }

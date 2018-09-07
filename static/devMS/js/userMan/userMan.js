@@ -13,7 +13,7 @@ function delAnUser(e){
 	        url: "http://" + host + "/index.php/ManUserCnt/delAnUser",
 	        data: {"id":id},
 	        success: function (result) {
-	          if(result == "sucess"){
+	          if(result == "success"){
 	            	alert("删除成功！");
 	            	location.reload(); 
 	            }else{

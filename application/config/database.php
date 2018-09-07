@@ -77,8 +77,12 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => $hostname,
+	'username' => 'admin',
+	'password' => '123456',
+	/*数据库连接用户名密码
 	'username' => 'root',
 	'password' => 'root',
+	*/
 	'database' => 'quDevSys',
 	'dbdriver' => 'mysqli',
     'dbprefix' => '',

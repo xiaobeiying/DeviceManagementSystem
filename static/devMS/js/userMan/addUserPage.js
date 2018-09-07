@@ -16,7 +16,7 @@ function addUser(e){
             url: "http://" + host + "/index.php/ManUserCnt/addAnUser",
             data: {"user_name":user_name,"password":password,"login_name":login_name,"role":role},
             success: function (result) {
-            	if(result == "sucess"){
+            	if(result == "success"){
             		alert("添加成功");
             		$("#user_name").val("");
             		$("#password").val("");

@@ -17,8 +17,11 @@ class ShowDevCnt extends CI_Controller {
 		$category = $_GET['category'];
 		$borrower = $_GET['borrower'];
 		$old_dev = $_GET['old_dev'];
+		$phone_Cores = $_GET['phone_Cores'];
+		$phone_resolution = $_GET['phone_resolution'];
+		$hdexport = $_GET['hdexport'];
 		
-		echo json_encode($this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev));
+		echo json_encode($this->ShowDevMod->searchDevs($plateform,$brand,$version,$status,$category,$borrower,$old_dev,$phone_Cores,$phone_resolution,$hdexport));
 	}
 	
 	//根据签借人获取设备
@@ -27,7 +30,5 @@ class ShowDevCnt extends CI_Controller {
 		$borrower = getMemberFromIP();
 		echo json_encode($this->ShowDevMod->getDevByBorrower($borrower));
 	}
-	
 }
-
 ?>

@@ -9,9 +9,9 @@ class ShowDevMod extends CI_Model {
 	}
 	
 	//条件查询符合要求的设备
-	public function searchDevs($plateform,$brand,$version,$status,$category,$borrower){
+	public function searchDevs($plateform,$brand,$version,$status,$category,$borrower,$phone_Cores,$phone_resolution,$hdexport){
 		//$queryString = "select a.id,a.device_name,a.model,a.theNum,a.owner,a.status,a.borrower,a.borrow_time,b.path from devices a,dev_imgs b where a.id=b.device_id";
-		$queryString = "select devices.id,device_name,model,theNum,owner,status,borrower,old_dev,borrow_time,path,device_id from devices left join dev_imgs on devices.id=dev_imgs.device_id";
+		$queryString = "select devices.id,device_name,model,theNum,owner,status,borrower,old_dev,borrow_time,hdexport,phone_Cores,phone_resolution,path,device_id from devices left join dev_imgs on devices.id=dev_imgs.device_id";
 		
 		$queryString = $queryString.' where devices.id != "" ';
 		if($plateform == "all"){
@@ -43,14 +43,33 @@ class ShowDevMod extends CI_Model {
 		}else{
 			//$queryString = $queryString.' and category="'.$category.'"';
 			$queryString = $queryString.' and category="'.$category.'"';
-		}
+		}		
 		if($borrower == ""){
-			$queryString = $queryString.' ORDER BY add_time DESC';
+
 		}else{
 			//$queryString = $queryString.' and a.borrower like "%'.$borrower.'%"';
-			$queryString = $queryString.' and borrower like "%'.$borrower.'%" ORDER BY add_time DESC';
+			$queryString = $queryString.' and borrower like "%'.$borrower.'%"';
 		}
-		
+		/*if($old_dev == 'all'){
+			
+		}else{
+			$queryString = $queryString.' and old_dev="'.$old_dev.'"';
+		}*/
+		if($phone_Cores == 'all'){
+			
+		}else{
+			$queryString = $queryString.' and phone_Cores="'.$phone_Cores.'"';
+		}
+		if($phone_resolution == 'all'){
+			
+		}else{
+			$queryString = $queryString.' and phone_resolution like "%'.$phone_resolution.'%"';
+		}
+		if($hdexport == 'all'){
+			
+		}else{
+			$queryString = $queryString.' and hdexport="'.$hdexport.'"';
+		}
 		
 		$query = $this->db->query($queryString);
 		$arr = $query->result();
@@ -70,8 +89,7 @@ class ShowDevMod extends CI_Model {
 		//exit;
 		//$jresult = json_encode($arr);
 		//return $arr;
-		
-		
+
 		
 	}
 	

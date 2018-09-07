@@ -28,6 +28,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('GetDevInfoMod');
 		$this->load->model('CheckDevMod');
 		$this->load->model('ShowDevMod');
+		$this->load->model('ManDevMod');
 		$this->load->model('ManUserMod');
 		$this->load->model('ManPicMod');
 	}

@@ -34,6 +34,13 @@ class ManageDev extends CI_Controller {
 		$devCategory = $_GET['devCategory'];
 		$devOther = $_GET['devOther'];
 		$devComments = $_GET['devComments'];
+		$devResolution = $_GET['devResolution']; 
+		$devCPU = $_GET['devCPU'];
+		$devGPU = $_GET['devGPU'];
+		$devCores = $_GET['devCores'];
+		$devHDExport = $_GET['devHDExport'];
+		$devHDCamera = $_GET['devHDCamera'];
+		$devArchitecture = $_GET['devArchitecture'];
 		
 		
 		$uploadPics = $_GET['uploadPics'];
@@ -42,7 +49,7 @@ class ManageDev extends CI_Controller {
 		$addTime = date('Y-m-d H:i:s',time());
 		//向数据库插入新设备
 		$this->DevManageMod->addDevice($devName,$devModel,$devNum,$devPlateform,$devBrand,$devVersion,$devOwner,
-				$devOther,$devComments,$devCategory,$addTime,$img_conunt,$imgs);
+				$devOther,$devComments,$devCategory,$addTime,$img_conunt,$imgs,$devResolution,$devCPU,$devGPU,$devCores,$devHDExport,$devHDCamera,$devArchitecture);
 		
 		//写入操作日志
 		$theTime = date('y-m-d h:i:s',time());
@@ -52,7 +59,7 @@ class ManageDev extends CI_Controller {
 		$doThings = "添加了设备：".$devName.'--编号：'.$devNum;
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "sucess";
+		echo "success";
 	}
 	
 	//设备查询
@@ -91,7 +98,7 @@ class ManageDev extends CI_Controller {
 		$doThings = "申请了设备：".$device_name;
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "scuess";
+		echo "success";
 	}
 	
 	//取消申请设备
@@ -109,7 +116,7 @@ class ManageDev extends CI_Controller {
 		$doThings = "取消申请了设备：".$device_name;
 		writeToLog($theTime,$who,$where,$doThings);
 		
-		echo "scuess";
+		echo "success";
 	}
 	
 	function test3(){

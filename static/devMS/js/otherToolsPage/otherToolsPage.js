@@ -37,7 +37,7 @@ function delExtPics(e){
         url: "http://" + host + "/index.php/manPicCnt/delExtImgs",
         data: {},
         success: function (result) {
-          if(result == "sucess"){
+          if(result == "success"){
         	  alert("清除成功，页面将刷新！");
         	  location.reload(); 
             }else{

@@ -7,7 +7,7 @@ function getPics(){
         url: "http://" + host + "/ci/index.php/Welcome/getPics?file=IMG_0006.jpg",
         data: {},
         success: function (result) {
-          	alert("sucess");
+          	alert("success");
       	  }
        });
 }

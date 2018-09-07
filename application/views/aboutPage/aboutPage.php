@@ -27,13 +27,15 @@ writeToLog($theTime,$who,$where,$doThings);
 <h2 style="margin-top:0px;margin-bottom:20px;color:">请大家爱护我们的测试机</h2>
 <img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/VivaVideo256.png";?>"></img>
 <img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/SlidePlus256.png";?>"></img>
-<img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/Fine256.png";?>"></img>
+<img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/VidStatus.png";?>"></img>
+<img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/Viso.png";?>"></img>
+<img style="margin:20px;width:100px;height:100px;"src="<?php echo "http://".$host."/imgs/VivaLive.png";?>"></img>
 <h4 id="like-btn" style="margin-top:20px;margin-bottom:0px;color:">使用过程中如遇问题，请随时联系管理员</h4>
 </div>
 
 <div style="text-align:center;padding-top:20px;">
 <h4 id="like" style="text-align:center;margin-top:20px;color:0000FF" hidden>QQ:2969360997 电话:152******04</h4>
-<label style="margin-top:50px;margin-bottom:20px;color:">小影设备管理系统--DMS V1.0 </label></div>
+<label style="margin-top:50px;margin-bottom:20px;color:">小影设备管理系统--DMS V1.1 </label></div>
 </div>
 </div>
 

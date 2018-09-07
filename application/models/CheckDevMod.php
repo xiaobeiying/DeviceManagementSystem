@@ -152,7 +152,7 @@ class CheckDevMod extends CI_Model {
 				"check_dev" => "0"
 		);
 		$this->db->update("devices",$data);
-		return "scuess";
+		return "success";
 		/**
 		$queryString = 'select a.id,a.device_name,a.model,a.theNum,a.borrower,a.owner,a.borrow_time,
 				b.path from devices a,dev_imgs b where a.id=b.device_id and check_dev="0"';
@@ -169,7 +169,7 @@ class CheckDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "scuess";
+		return "success";
 	}
 	
 	
@@ -180,7 +180,7 @@ class CheckDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "scuess";
+		return "success";
 	}
 	
 	//修改设备状态为初始状态
@@ -190,7 +190,7 @@ class CheckDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "scuess";
+		return "success";
 	}
 	
 	//修改设备状态为报废
@@ -200,7 +200,7 @@ class CheckDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "scuess";
+		return "success";
 	}
 	
 	//修改设备状态为非报废状态
@@ -210,7 +210,7 @@ class CheckDevMod extends CI_Model {
 		);
 		$this->db->where("id",$id);
 		$this->db->update("devices",$data);
-		return "scuess";
+		return "success";
 	}
 	
 }

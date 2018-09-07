@@ -11,6 +11,13 @@ $("#dev_add_but").click(function(event){
 	devCategory = $("#dev_category").val();
 	devOther = $("#dev_other").val();
 	devComments = $("#dev_comments").val();
+	devResolution = $("#dev_resolution").val();
+	devCPU = $("#dev_cpu").val();
+	devGPU = $("#dev_gpu").val();
+	devCores = $("#dev_cores").val();
+	devHDExport = $("#dev_hdexport").val();
+	devHDCamera = $("#dev_hdcamera").val();
+	devArchitecture = $("#dev_architecture").val();
 	
 	uploadPics = getUploadPics();
 
@@ -20,9 +27,9 @@ $("#dev_add_but").click(function(event){
 		host = window.location.host;
 		//url = host + "/ci/index.php/AddDevices/addDevices";
 		url = host + "/index.php/ManageDev/addDevices";
-		$.get("http://" + url,{devName:devName,devModel:devModel,devNum:devNum,devPlateform:devPlateform,devOwner:devOwner,devBrand:devBrand,devVersion:devVersion,devCategory:devCategory,devOther:devOther,devComments:devComments,uploadPics:uploadPics},
+		$.get("http://" + url,{devName:devName,devModel:devModel,devNum:devNum,devPlateform:devPlateform,devOwner:devOwner,devBrand:devBrand,devVersion:devVersion,devCategory:devCategory,devOther:devOther,devComments:devComments,devResolution:devResolution,devCPU:devCPU,devGPU:devGPU,devCores:devCores,devHDExport:devHDExport,devHDCamera:devHDCamera,devArchitecture:devArchitecture,uploadPics:uploadPics},
 			function(data){
-				if(data == "sucess"){
+				if(data == "success"){
 					alert("设备添加成功！！！");
 					/*
 					devName = $("#dev_name").val("");
@@ -43,8 +50,7 @@ $("#dev_add_but").click(function(event){
 				}else{
 					alert("设备添加失败！！！");
 				}
-				
-			});
+				});
 	}
 	
 })

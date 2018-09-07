@@ -27,7 +27,7 @@ writeToLog($theTime,$who,$where,$doThings);
 			<tr>
 				<td>
 					<label>设备名：</label>
-					<input id="dev_name" class="form-control input_style"></input>
+					<input id="dev_name" class="form-control input_style" style="margin-left:15px;"></input>
 				</td>
 				<td>
 					<label>型号：</label>
@@ -35,13 +35,13 @@ writeToLog($theTime,$who,$where,$doThings);
 				</td>
 				<td>
 					<label>编号：</label>
-					<input id="dev_num" class="input_style form-control"></input>
+					<input id="dev_num" class="input_style form-control" style="margin-left:15px;"></input>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label>平台：</label>
-					<select id="dev_plateform"  class="input_style form-control" style="margin-left:15px;">
+					<select id="dev_plateform"  class="input_style form-control" style="margin-left:30px;">
 						<option value="android">Android</option>
 						<option value="ios">iOS</option>
 					</select>
@@ -52,7 +52,7 @@ writeToLog($theTime,$who,$where,$doThings);
 				</td>
 				<td>
 					<label>品牌：</label>
-					<input id="dev_brand" class="input_style form-control"></input>
+					<input id="dev_brand" class="input_style form-control" style="margin-left:15px;"></input>
 				</td>
 			</tr>
 			<tr>
@@ -68,6 +68,47 @@ writeToLog($theTime,$who,$where,$doThings);
 						<option value="台式机">台式机</option>
 						<option value="其他">其他</option>
 					</select>
+				</td>
+				<td>
+					<label>分辨率：</label>
+					<input id="dev_resolution" class="form-control input_style"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>CPU：</label>
+					<input id="dev_cpu"  class="input_style form-control" style="margin-left:30px;"></input>
+				</td>
+				<td>
+					<label>GPU：</label>
+					<input id="dev_gpu"  class="input_style form-control"></input>
+				</td>
+				<td>
+					<label>Cores：</label>
+					<input id="dev_cores" class="input_style form-control"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>HDExpt：</label>
+					<select id="dev_hdexport"  class="input_style form-control" style="margin-left:15px;">
+						<option value="0">480P</option>
+						<option value="1">720P</option>
+						<option value="2">1080P</option>
+						<option value="3">2K</option>
+					</select>
+				</td>
+				<td>
+					<label>1080P拍摄：</label>
+					<select id="dev_hdcamera"  class="input_style form-control">
+						<option value=""></option>
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+					</select>
+				</td>
+				<td>
+					<label>Architecture：</label>
+					<input id="dev_architecture" class="input_style form-control"></input>
 				</td>
 			</tr>
 			<tr>

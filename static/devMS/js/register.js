@@ -16,7 +16,7 @@ function register(e){
 	            url: "http://" + host + "/index.php/ManUserCnt/toRegister",
 	            data: {"user_name":user_name,"login_name":login_name,"password":password},
 	            success: function (result) {
-	            	if(result == "sucess"){
+	            	if(result == "success"){
 	            		alert("注册成功，请联系管理员授权！");
 	            		window.history.go(-1);
 	            	}else{

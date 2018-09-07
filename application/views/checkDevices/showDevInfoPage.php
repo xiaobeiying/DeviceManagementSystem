@@ -58,6 +58,33 @@ writeToLog($theTime,$who,$where,$doThings);
 		<tr class="info_table">
 			<td>平台: <?php echo $jdata->plateform;?></td>
 			<td>品牌: <?php echo $jdata->brand;?></td>
+			<td>HDExpt: <?php if($jdata->hdexport == 0) {
+				echo "480P";
+			}else if($jdata->hdexport == 1) {
+				echo "720P";
+			}else if($jdata->hdexport == 2) {
+				echo "1080P";
+			}else if($jdata->hdexport == 3) {
+				echo "2K";
+			};?>
+			</td>
+			<td>1080P拍摄: <?php if($jdata->camera_1080p == 0) {
+				echo "No";
+			}else if($jdata->camera_1080p == 1) {
+				echo "Yes";
+			};?>
+			</td>
+			<td>分辨率: <?php echo $jdata->phone_resolution;?></td>
+		</tr>
+		
+		<tr class="info_table">
+			<td>CPU: <?php echo $jdata->phone_CPU;?></td>
+			<td>Cores: <?php echo $jdata->phone_Cores;?></td>
+			<td colspan="3">Architecture: <?php echo $jdata->phone_Architecture;?></td>
+		</tr>
+		
+		<tr class="info_table">
+		    <td colspan="2">GPU: <?php echo $jdata->phone_GPU;?></td>
 			<td colspan="3">其他信息: <?php echo $jdata->other;?></td>
 		</tr>
 		<tr class="info_table">
