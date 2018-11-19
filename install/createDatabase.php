@@ -50,7 +50,14 @@ function createDb(){
 			  `check_dev` char(4) DEFAULT '0' COMMENT '盘点设备的字段',
 			  `old_dev` char(4) DEFAULT '0' COMMENT '0表示设备是好的，1表示设备报废',
 			  `add_time` char(16) DEFAULT NULL COMMENT '添加设备的时间',
-			  `borrow_time` char(16) DEFAULT NULL COMMENT '借出设备的时间'
+			  `borrow_time` char(16) DEFAULT NULL COMMENT '借出设备的时间',
+			  `hdexport` char(8) DEFAULT '0' COMMENT '0：最高支持480P导出；1：最高支持720P导出；2：最高支持1080P导出；3：最高支持2K导出',
+			  `camera_1080p` char(8) DEFAULT NULL COMMENT '0：不支持1080P拍摄；1：支持1080P拍摄',
+			  `phone_CPU` char(32) DEFAULT NULL,
+			  `phone_GPU` char(32) DEFAULT NULL,
+			  `phone_Cores` char(8) DEFAULT NULL,
+			  `phone_Architecture` char(64) DEFAULT NULL,
+			  `phone_resolution` char(32) DEFAULT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 	setCoding();
 	mysql_query($sql,$con);
